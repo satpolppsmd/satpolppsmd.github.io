@@ -46,7 +46,7 @@ h1{margin:0;font-size:28px;line-height:1.2}
 
 /* cek status */
 .cek{margin-top:18px}
-.cek .baris{display:grid;grid-template-columns:2fr 1fr auto;gap:10px;align-items:end}
+.cek .baris{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
 .cek label{display:block;font-size:13px;font-weight:600;color:var(--abu)}
 .cek input{width:100%;margin-top:4px;font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--garis);border-radius:10px;background:#fff;color:var(--teks)}
 .cek input:focus{outline:2px solid var(--biru2);outline-offset:0;border-color:transparent}
@@ -146,11 +146,11 @@ footer span{opacity:.85}
     <div class="kartu cek" id="cek">
       <div style="display:flex;gap:14px;align-items:flex-start">
         <div class="ikon ik-cek" style="flex:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11l1.8 1.8 3.4-3.6"/></svg></div>
-        <div><div class="label">Untuk pelapor</div><h2 style="margin-bottom:2px">Cek Status Aduan</h2><p style="margin:0 0 14px">Masukkan nomor tiket dan 4 digit terakhir nomor WhatsApp yang dipakai saat melapor.</p></div>
+        <div><div class="label">Untuk pelapor</div><h2 style="margin-bottom:2px">Cek Status Aduan</h2><p style="margin:0 0 14px">Masukkan nomor tiket dan 4 angka terakhir nomor WhatsApp yang Anda daftarkan saat melapor.</p></div>
       </div>
       <form id="formCek" class="baris" autocomplete="off">
         <label>Nomor tiket<input id="cTiket" placeholder="PPUD-202611-XXXXX" maxlength="24" required></label>
-        <label>4 digit terakhir WA<input id="cWa" inputmode="numeric" pattern="\d{4}" maxlength="4" placeholder="1234" required></label>
+        <label>4 angka terakhir nomor WhatsApp yang Anda daftarkan saat melapor<input id="cWa" inputmode="numeric" pattern="\d{4}" maxlength="4" placeholder="1234" required></label>
         <button class="tombol t-hijau" id="cBtn" type="submit">Cek status</button>
       </form>
       <div class="galat" id="cGalat"></div>
@@ -228,7 +228,7 @@ $('formCek').addEventListener('submit', function(e){
   e.preventDefault();
   var t=$('cTiket').value.trim().toUpperCase(), w=$('cWa').value.trim(), btn=$('cBtn');
   $('cGalat').textContent=''; $('cHasil').style.display='none';
-  if(!/^\d{4}$/.test(w)){ $('cGalat').textContent='Isi 4 digit terakhir nomor WhatsApp.'; return; }
+  if(!/^\d{4}$/.test(w)){ $('cGalat').textContent='Isi 4 angka terakhir nomor WhatsApp yang Anda daftarkan saat melapor.'; return; }
   btn.disabled=true; btn.textContent='Memeriksa…';
   panggil({ action:'cekStatus', tiket:t, wa4:w }).then(function(r){
     $('cHasil').innerHTML='<div class="atasH"><span class="tk">'+esc(r.tiket)+'</span><span class="pil '+(KELAS[r.status]||'')+'">'+esc(r.status)+'</span></div>'+
