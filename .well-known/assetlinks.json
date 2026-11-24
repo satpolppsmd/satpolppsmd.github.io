@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "id.my.ppud.dashboard",
+    "sha256_cert_fingerprints": ["9F:E4:F8:A2:15:A9:B5:5C:9E:21:32:59:86:C7:D8:D4:E4:96:13:7C:8F:E0:6C:47:4F:FF:0B:FC:FE:73:20:99"]
+  }
+}]
